@@ -1,5 +1,82 @@
 ﻿@page "/RenoWalls"
-<h3>RenoWalls</h3>
+@using RenoSystem;
+
+<h3>Reno Wall Collection</h3>
+
+<div class="container border">
+    <section id="section-wall-details">
+        <fieldset class="w-50">
+            <legend>Wall Details</legend>
+            <div>
+                <label class="col-2" for="wall-planId">
+                    Plan Id*
+                </label>
+                <input class="col-4" type="text" id="wall-planId" />
+            </div>
+            <div>
+                <label class="col-2" for="wall-width">
+                    Width*
+                </label>
+                <input class="col-4" type="number" id="wall-width" />
+            </div>
+            <div>
+                <label class="col-2" for="wall-height">
+                    Height*
+                </label>
+                <input class="col-4" type="number" id="wall-height" />
+            </div>
+            <div>
+                <label class="col-2" for="wall-color">
+                    Color*
+                </label>
+                <input class="col-4" type="text" id="wall-color" />
+            </div>
+        </fieldset>
+
+        <fieldset class="w-50">
+            <legend>Opening (optional)</legend>
+            <div>
+                <label for="opening-type">
+                    Opening Type*
+                </label>
+                <select id="opening-type">
+                    <option disabled selected value="">Select Opening Type</option>
+                    <option>@OpeningType.Closet</option>
+                </select>
+            </div>
+            <div>
+                <label for="opening-width">
+                    Width*
+                </label>
+                <input type="number" id="opening-width" />
+            </div>
+            <div>
+                <label for="opening-height">
+                    Height*
+                </label>
+                <input type="number" id="opening-height" />
+            </div>
+            <div>
+                <label for="opening-edging">
+                    Edging
+                </label>
+                <input type="text" id="opening-edging" />
+            </div>
+        </fieldset>
+    </section>
+    <section id="menu-buttons" class="">
+        <div>
+            <button class="btn-primary">Collect</button>
+        </div>
+        <div>
+            <button class="btn-secondary">Clear</button>
+        </div>
+        <div>
+            <button class="btn-info">Report</button>
+        </div>
+    </section>
+</div>
+
 
 @code {
 

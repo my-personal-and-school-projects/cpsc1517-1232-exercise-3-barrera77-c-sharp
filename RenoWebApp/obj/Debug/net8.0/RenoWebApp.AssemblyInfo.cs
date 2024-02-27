@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RenoWebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82e665a852f4c56f13181291ad763efc2869334c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2e03667201ded451c6a4e24a2f788f27faa1070")]
 [assembly: System.Reflection.AssemblyProductAttribute("RenoWebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RenoWebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

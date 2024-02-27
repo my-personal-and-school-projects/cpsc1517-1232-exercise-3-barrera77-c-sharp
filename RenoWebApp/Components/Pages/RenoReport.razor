@@ -1,5 +1,15 @@
 ﻿@page "/RenoReport"
+@using RenoSystem;
+
 <h3>RenoReport</h3>
+
+@if (FeedbackMessage != null)
+{
+    <div class="alert alert-danger">
+        @FeedbackMessage
+    </div>
+} 
+
 
 <table class="table table-striped">
     <thead>
@@ -7,19 +17,30 @@
             <th>Plan Id</th>
             <th>Width (cm)</th>
             <th>Height (cm)</th>
-            <th>Area (m2)</th>
+            <th>Area (m<sup>2</sup>)</th>
             <th>Opening</th>
         </tr>
     </thead>
     <tbody>
-        @for (int i = 0; i <= 5; i++)
+        @foreach (var currentWall in Walls)
         {
+            string formattedArea = "";
+            try
+            {
+                //Convert the area in m2 and format it
+                area = Double.Parse((currentWall.SurfaceArea).ToString());
+                formattedArea = (area / 10000).ToString("0.00");
+            } catch (Exception e)
+            {
+                FeedbackMessage = $"Record Error: {e.Message}";
+            }
+
             <tr>
-                <th>Placeholder</th>
-                <th>Placeholder</th>
-                <th>Placeholder</th>
-                <th>Placeholder</th>
-                <th>Placeholder</th>
+                <th>@currentWall.PlanId</th>
+                <th>@currentWall.Width</th>
+                <th>@currentWall.Height</th>
+                <th>@formattedArea</th>
+                <th>@currentWall.WallOpening</th>
             </tr>
         }
 
@@ -27,5 +48,50 @@
 </table>
 
 @code {
+    private List<Wall>? Walls { get; set; }
+    private string? FeedbackMessage { get; set; }
+    private double area { get; set; }
+
+    [Inject]
+    public IWebHostEnvironment WebHostEnvironment { get; set; } = default!;
+
+    protected override Task OnInitializedAsync()
+    {
+        Walls = new();
+
+        string csvFilePath = $@"{WebHostEnvironment.ContentRootPath}\Data\TestData.csv";
+
+        using (StreamReader reader = new StreamReader(csvFilePath))
+        {
+            try
+            {
+                if (reader.Peek() == -1)
+                {
+                    throw new InvalidOperationException("There are no records in the file");
+                }
+                //reader.ReadLine();
+                string? currentLine;
+
+                while ((currentLine = reader.ReadLine()) != null)
+                {
+                    try
+                    {
+                        Walls.Add(Wall.Parse(currentLine));
+                    }
+                    catch (Exception e)
+                    {
+                        FeedbackMessage = $"Record Error: {e.Message}";
+                    }
+                }
+            }
+            catch (InvalidOperationException e)
+            {
+                FeedbackMessage = $"File Error: {e.Message}";
+            }
+            reader.Close();
+        }
+
+        return base.OnInitializedAsync();
+    }
 
 }
