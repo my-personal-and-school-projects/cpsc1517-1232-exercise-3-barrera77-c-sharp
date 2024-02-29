@@ -55,7 +55,21 @@
     [Inject]
     public IWebHostEnvironment WebHostEnvironment { get; set; } = default!;
 
+    /// <summary>
+    /// Read file when the component gets initialized
+    /// </summary>
+    /// <returns></returns>
     protected override Task OnInitializedAsync()
+    {
+        ReadFile();
+
+        return base.OnInitializedAsync();
+    }
+
+    /// <summary>
+    /// Method reads the information
+    /// </summary>
+    public void ReadFile()
     {
         Walls = new();
 
@@ -90,8 +104,6 @@
             }
             reader.Close();
         }
-
-        return base.OnInitializedAsync();
     }
 
 }
