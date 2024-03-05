@@ -1,0 +1,27 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = RenoWebApp
+build_property.RootNamespace = RenoWebApp
+build_property.ProjectDir = C:\Users\barre\OneDrive\Documents\Personal Manuel\DMIT - NAIT\CPSC1517 - Introduction to App Develop\Repos\cpsc1517-1232-exercise-3-barrera77\RenoWebApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\barre\OneDrive\Documents\Personal Manuel\DMIT - NAIT\CPSC1517 - Introduction to App Develop\Repos\cpsc1517-1232-exercise-3-barrera77\RenoWebApp
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/barre/OneDrive/Documents/Personal Manuel/DMIT - NAIT/CPSC1517 - Introduction to App Develop/Repos/cpsc1517-1232-exercise-3-barrera77/RenoWebApp/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-50eugkvouf
+
+[C:/Users/barre/OneDrive/Documents/Personal Manuel/DMIT - NAIT/CPSC1517 - Introduction to App Develop/Repos/cpsc1517-1232-exercise-3-barrera77/RenoWebApp/Components/Pages/RenoWalls.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZW5vV2FsbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-ovffwvzepi

@@ -1,0 +1,46 @@
+body[b-ovffwvzepi] {
+}
+
+section[b-ovffwvzepi] {
+    display: flex;
+    flex-wrap:wrap;
+}
+
+#section-wall-details[b-ovffwvzepi]{
+    padding: 0 5rem 0 5rem;
+}
+
+#section-wall-details fieldset[b-ovffwvzepi]{
+    width: 50%;
+    max-width: 50%;
+
+}
+
+#section-wall-details label[b-ovffwvzepi], input[b-ovffwvzepi]{
+    margin-bottom: 2px;    
+}
+
+#menu-buttons[b-ovffwvzepi] {
+    margin: auto;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 3rem;    
+}
+
+    #menu-buttons button[b-ovffwvzepi]{
+        border-radius: 10px;
+        width: 5rem;
+    }
+
+#btn-report[b-ovffwvzepi] {
+    border-radius: 10px;
+    width: 5rem;
+    padding: 2.5px 11px 2.5px 11px;
+    text-decoration: none;
+    margin: auto;
+    text-align: center;
+    color: white;
+}
+
+
