@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34601.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenoWebApp", "RenoWebApp\RenoWebApp.csproj", "{13319C4E-A868-4F05-8C82-6FBB2B58A6DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenoSystem", "RenoSystem\RenoSystem.csproj", "{816C8E02-DD57-443A-88E6-B74F5D6A37ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13319C4E-A868-4F05-8C82-6FBB2B58A6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13319C4E-A868-4F05-8C82-6FBB2B58A6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13319C4E-A868-4F05-8C82-6FBB2B58A6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13319C4E-A868-4F05-8C82-6FBB2B58A6DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{816C8E02-DD57-443A-88E6-B74F5D6A37ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{816C8E02-DD57-443A-88E6-B74F5D6A37ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{816C8E02-DD57-443A-88E6-B74F5D6A37ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{816C8E02-DD57-443A-88E6-B74F5D6A37ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ADBFC117-B1E8-48AB-BF99-04EAB14DE40E}
+	EndGlobalSection
+EndGlobal
