@@ -1,13 +1,28 @@
 ﻿body {
 }
+.container {    
+}
+
+h3 {
+     background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(68, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+     color: white;
+     padding: 1rem;
+}
 
 section {
     display: flex;
     flex-wrap:wrap;
+
 }
 
 #section-wall-details{
-    padding: 0 5rem 0 5rem;
+    padding: 0 5rem 0 5rem;  
+    
 }
 
 #section-wall-details fieldset{
@@ -25,7 +40,7 @@ section {
     justify-content: center;
     gap: 1rem;
     width: 100%;
-    margin-top: 3rem;    
+    margin: 3rem 0 1rem 0; 
 }
 
     #menu-buttons button{
@@ -42,5 +57,4 @@ section {
     text-align: center;
     color: white;
 }
-
 

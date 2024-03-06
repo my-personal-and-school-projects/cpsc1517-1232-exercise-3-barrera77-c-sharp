@@ -119,7 +119,6 @@ namespace RenoSystem
             if (WallOpening == null)
             {
                 return $"{PlanId},{Width},{Height},{Color}";
-
             }
             else
             {
@@ -150,19 +149,18 @@ namespace RenoSystem
         }
         public void ReplaceOpening(Opening opening)
         {
-
             if (opening == null)
             {
                 throw new ArgumentNullException("Opening is missing! Please enter a new opening to replace the current one!");
             }
 
             WallOpening = opening;
-
         }
         public static Wall Parse(string text)
         {
             string[] peices = text.Split(',');
             Wall theWall = null;
+
             if (peices.Length == 8 || peices.Length == 4)
             {
                 if (peices.Length == 8)
@@ -177,7 +175,7 @@ namespace RenoSystem
             }
             else
             {
-                throw new FormatException($"String not in expeced format. Missing value {text}");
+                throw new FormatException($"String not in expected format. Missing value {text}");
             }
             return theWall;
         }

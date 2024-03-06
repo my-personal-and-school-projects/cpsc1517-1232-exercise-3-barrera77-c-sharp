@@ -28,7 +28,7 @@ else if (FeedbackMessage != null)
     </div>
 }
 
-<div class="container border">
+<div class="container border mt-4">
     <section id="section-wall-details" class="m-auto d-flex justify-content-center">
         <fieldset>
             <legend>Wall Details</legend>
@@ -107,7 +107,6 @@ else if (FeedbackMessage != null)
     </section>
 </div>
 
-
 @code {
     private string? FeedbackMessage { get; set; }
     private Wall? NewWall { get; set; }
@@ -125,6 +124,9 @@ else if (FeedbackMessage != null)
     [Inject]
     public IWebHostEnvironment WebHostEnvironment { get; set; } = default!;
 
+    /// <summary>
+    /// Save new wall into the test data file using StreamWriter
+    /// </summary>
     public void SaveWallToFIle()
     {
         string csvFilePath = $@"{WebHostEnvironment.ContentRootPath}\Data\TestData.csv";
@@ -164,7 +166,8 @@ else if (FeedbackMessage != null)
     }
 
     /// <summary>
-    /// Validate user input
+    /// Validate user input adding all possible errors to the ErrorList
+    /// dictionary for later access and display
     /// </summary>
     public void ValidateFields()
     {       
@@ -181,12 +184,7 @@ else if (FeedbackMessage != null)
         if (WallHeight <= 0 || WallHeight < 100)
         {
             ErrorList.Add("Wall Height", "Height should be a positive non-zero and a minimum of 100 cm");
-        }
-
-        // if (Utils.Utilities.IsNullEmptyOrWhiteSpace(WallColor))
-        // {
-        //     ErrorList.Add("Wall Color", "Color for the wall is required");
-        // }      
+        }    
 
         if (OpeningType != null)
         {
@@ -194,7 +192,6 @@ else if (FeedbackMessage != null)
             {
                 ErrorList.Add("Opening Width", $"Width value of {OpeningWidth} is invalid should be a positive non-zero and a minimum of 50 cm");
             }
-
             if (OpeningHeight < 0 || (OpeningHeight >= 0 && OpeningHeight < 120))
             {
                 ErrorList.Add("Opening Height", $"Height value of {OpeningHeight} is invalid should be a positive non-zero and a minimum of 120 cm");
@@ -203,11 +200,7 @@ else if (FeedbackMessage != null)
             {
                 ErrorList.Add("Edging", $"Edging value of {Edging} should be zero or a minimum of 10 cm");
             }
-        }
-
-       
-    }
-
-    
+        }       
+    }   
    
 }

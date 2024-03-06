@@ -1,16 +1,20 @@
 ﻿@page "/RenoReport"
 @using RenoSystem;
 
-<h3>RenoReport</h3>
+<h3>Reno Report</h3>
 
 @if (FeedbackMessage != null)
 {
     <div class="alert alert-danger">
-        @FeedbackMessage
+        <p class="mb-3">Please fix the following issues:</p>
+        <ul>
+            @foreach (var error in ErrorList)
+            {
+                <li>@error.Key: @error.Value</li>
+            }
+        </ul>       
     </div>
 } 
-
-
 <table class="table table-striped">
     <thead>
         <tr>
@@ -30,20 +34,28 @@
                 //Convert the area in m2 and format it
                 area = Double.Parse((currentWall.SurfaceArea).ToString());
                 formattedArea = (area / 10000).ToString("0.00");
-            } catch (Exception e)
+            } 
+            catch (Exception e)
             {
-                FeedbackMessage = $"Record Error: {e.Message}";
+                FeedbackMessage = e.Message;
+                ErrorList.Add($"Record Error {ErrorList.Count + 1}", FeedbackMessage);
             }
-
             <tr>
                 <th>@currentWall.PlanId</th>
                 <th>@currentWall.Width</th>
                 <th>@currentWall.Height</th>
                 <th>@formattedArea</th>
-                <th>@currentWall.WallOpening</th>
+                <th>@if (currentWall.WallOpening != null)
+                    {
+                        @currentWall.WallOpening.Type;
+                    }
+                    else
+                    {
+                        @currentWall.WallOpening
+                    }
+                </th>
             </tr>
         }
-
     </tbody>
 </table>
 
@@ -51,6 +63,7 @@
     private List<Wall>? Walls { get; set; }
     private string? FeedbackMessage { get; set; }
     private double area { get; set; }
+    public Dictionary<string, string> ErrorList { get; set; } = new();
 
     [Inject]
     public IWebHostEnvironment WebHostEnvironment { get; set; } = default!;
@@ -89,18 +102,20 @@
                 while ((currentLine = reader.ReadLine()) != null)
                 {
                     try
-                    {
+                    {                                                                             
                         Walls.Add(Wall.Parse(currentLine));
                     }
-                    catch (Exception e)
+                    catch (FormatException e)
                     {
-                        FeedbackMessage = $"Record Error: {e.Message}";
+                        FeedbackMessage = e.Message;                       
+                        ErrorList.Add($"Record Error {ErrorList.Count + 1}", FeedbackMessage);
                     }
                 }
             }
-            catch (InvalidOperationException e)
+            catch (FormatException e)
             {
-                FeedbackMessage = $"File Error: {e.Message}";
+                FeedbackMessage = e.Message;
+                ErrorList.Add($"Record Error {ErrorList.Count + 1}", FeedbackMessage);
             }
             reader.Close();
         }
