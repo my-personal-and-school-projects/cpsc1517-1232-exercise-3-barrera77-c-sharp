@@ -178,23 +178,23 @@ else if (FeedbackMessage != null)
 
         if (WallWidth <= 0 || WallWidth < 26)
         {
-            ErrorList.Add("Wall Width", "Width should be a positive non-zero and a minimum of 26 cm");
+            ErrorList.Add("Wall Width", "Wall Width should be a positive non-zero and a minimum of 26 cm");
         }
 
         if (WallHeight <= 0 || WallHeight < 100)
         {
-            ErrorList.Add("Wall Height", "Height should be a positive non-zero and a minimum of 100 cm");
+            ErrorList.Add("Wall Height", "Wall Height should be a positive non-zero and a minimum of 100 cm");
         }    
 
         if (OpeningType != null)
         {
             if (OpeningWidth < 0 || ( OpeningWidth >= 0 && OpeningWidth < 50))
             {
-                ErrorList.Add("Opening Width", $"Width value of {OpeningWidth} is invalid should be a positive non-zero and a minimum of 50 cm");
+                ErrorList.Add("Opening Width", $"Opening Width value of {OpeningWidth} is invalid should be a positive non-zero and a minimum of 50 cm");
             }
             if (OpeningHeight < 0 || (OpeningHeight >= 0 && OpeningHeight < 120))
             {
-                ErrorList.Add("Opening Height", $"Height value of {OpeningHeight} is invalid should be a positive non-zero and a minimum of 120 cm");
+                ErrorList.Add("Opening Height", $"Opening Height value of {OpeningHeight} is invalid should be a positive non-zero and a minimum of 120 cm");
             }
             if (Edging < 0 || (Edging > 0 && Edging < 10))
             {
