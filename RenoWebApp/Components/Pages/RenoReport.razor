@@ -94,7 +94,7 @@
             {
                 if (reader.Peek() == -1)
                 {
-                    throw new InvalidOperationException("There are no records in the file");
+                    throw new IOException("There are no records in the file to display");
                 }
                 //reader.ReadLine();
                 string? currentLine;
@@ -112,7 +112,7 @@
                     }
                 }
             }
-            catch (FormatException e)
+            catch (IOException e)
             {
                 FeedbackMessage = e.Message;
                 ErrorList.Add($"Record Error {ErrorList.Count + 1}", FeedbackMessage);
