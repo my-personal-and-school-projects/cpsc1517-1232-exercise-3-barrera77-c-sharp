@@ -1,5 +1,4 @@
-﻿
-namespace RenoSystem
+﻿namespace RenoSystem
 {
     /// <summary>
     /// The purpose of this exercise is the use of simple data types to represent the primary objects for managing renovation projects
@@ -13,7 +12,6 @@ namespace RenoSystem
         private const int _Height = 120;
         private int _width;
         private const int _Width = 50;
-
 
         //Properties
         public int Height
@@ -63,7 +61,7 @@ namespace RenoSystem
 
             set
             {
-                if (!Utils.Utilities.IsNonZeroPositive(value))
+                if (!Utils.Utilities.IsZeroPositive(value))
                 {
                     throw new ArgumentException("Edging cannot be less than 0");
                 }

@@ -52,7 +52,7 @@ else if (FeedbackMessage != null)
                 <label class="col-3" for="wall-color">
                     Color<span class="text-danger">*</span>
                 </label>
-                <input class="col-4" type="text" id="wall-color" required @bind=WallColor/>
+                <input class="col-2" type="color" id="wall-color" required @bind=WallColor/>
             </div>
         </fieldset>
 
@@ -120,22 +120,19 @@ else if (FeedbackMessage != null)
     public Dictionary<string, string> ErrorList { get; set; } = new();
 
     [Inject]
-    public IWebHostEnvironment WebHostEnvironment { get; set; } = default!;
-
+    public IWebHostEnvironment WebHostEnvironment { get; set; } = default!;   
     /// <summary>
     /// Save new wall into the test data file using StreamWriter
     /// </summary>
     public void SaveWallToFIle()
-    {
+    {       
         string csvFilePath = $@"{WebHostEnvironment.ContentRootPath}\Data\TestData.csv";
 
         ErrorList.Clear();
         ValidateFields();
 
-        if (ErrorList.Count == 0)
-        {          
-            //Create the wall opening if data is provided
-            WallOpening = new(OpeningWidth, OpeningHeight, OpeningType, Edging);
+        if (ErrorList.Count == 0 && OpeningType == null)
+        {            
             //Create a new wall to append to the file
             NewWall = new(PlanId, WallWidth, WallHeight, WallColor, WallOpening);
 
@@ -145,7 +142,28 @@ else if (FeedbackMessage != null)
             }
 
             FeedbackMessage = "Data has been recorded";
-        }                               
+        }
+        else if (ErrorList.Count == 0 && OpeningType != null)
+        {
+            try
+            {
+                //Create the wall opening if data is provided
+                WallOpening = new(OpeningWidth, OpeningHeight, OpeningType, Edging);
+                //Create a new wall to append to the file
+                NewWall = new(PlanId, WallWidth, WallHeight, WallColor, WallOpening);
+
+                using (StreamWriter writter = new StreamWriter(csvFilePath, true))
+                {
+                    writter.WriteLine(NewWall.ToString());
+                }
+
+                FeedbackMessage = "Data has been recorded";
+            }
+            catch (ArgumentException e)
+            {
+                ErrorList.Add("Opening Limit", e.Message);
+            }
+        }
     }
 
     /// <summary>
@@ -168,7 +186,8 @@ else if (FeedbackMessage != null)
     /// dictionary for later access and display
     /// </summary>
     public void ValidateFields()
-    {       
+    {      
+
         if (Utils.Utilities.IsNullEmptyOrWhiteSpace(PlanId))
         {
             ErrorList.Add("Wall PlanId", "Plan Id is required" );            
@@ -183,18 +202,22 @@ else if (FeedbackMessage != null)
         {
             ErrorList.Add("Wall Height", "Wall Height should be a positive non-zero and a minimum of 100 cm");
         }    
-
-        if (OpeningType != null)
+        if (Utils.Utilities.IsNullEmptyOrWhiteSpace(WallColor))
         {
-            if (OpeningWidth < 0 || ( OpeningWidth >= 0 && OpeningWidth < 50))
+            ErrorList.Add("Wall Color", "Please pick a wall color");
+        }
+
+        if (!Utils.Utilities.IsNullEmptyOrWhiteSpace(OpeningType.ToString()))
+        {
+            if (!Utils.Utilities.IsZeroPositive(OpeningWidth) || !Utils.Utilities.IsValidMinimum(OpeningWidth, 50))
             {
                 ErrorList.Add("Opening Width", $"Opening Width value of {OpeningWidth} is invalid should be a positive non-zero and a minimum of 50 cm");
             }
-            if (OpeningHeight < 0 || (OpeningHeight >= 0 && OpeningHeight < 120))
+            if (!Utils.Utilities.IsZeroPositive(OpeningHeight) || !Utils.Utilities.IsValidMinimum(OpeningHeight, 120))
             {
                 ErrorList.Add("Opening Height", $"Opening Height value of {OpeningHeight} is invalid should be a positive non-zero and a minimum of 120 cm");
             }
-            if (Edging < 0 || (Edging > 0 && Edging < 10))
+            if (!Utils.Utilities.IsZeroPositive(Edging) || (Utils.Utilities.IsNonZeroPositive(Edging) && !Utils.Utilities.IsValidMinimum(Edging, 10))) //(Edging < 0 || (Edging > 0 && Edging < 10))
             {
                 ErrorList.Add("Edging", $"Edging value of {Edging} should be zero or a minimum of 10 cm");
             }
